@@ -5,7 +5,7 @@
   "exports": "./build/src/main.js",
   "type": "module",
   "engines": {
-    "node": "^24.0.0",
+    "node": ">=22",
     "npm": ">=8.5.0"
   },
   "repository": {
