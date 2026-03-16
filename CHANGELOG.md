@@ -1,5 +1,12 @@
 Changelog
 
+## [2.1.5](https://github.com/nuxtus/create-nuxtus/compare/v2.1.4...v2.1.5) (2026-03-16)
+
+
+### Bug Fixes
+
+* use actions/checkout@v4 with fetch-depth 0 for semantic-release ([8eaeffc](https://github.com/nuxtus/create-nuxtus/commit/8eaeffc23669136a52422434465dfa8b245243f6))
+
 ## [2.1.4](https://github.com/nuxtus/create-nuxtus/compare/v2.1.3...v2.1.4) (2026-03-16)
 
 
