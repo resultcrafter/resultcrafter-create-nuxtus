@@ -63,7 +63,7 @@ export async function askOptions() {
             },
         },
         {
-            type: "list",
+            type: "select",
             name: "dbType",
             message: "Choose your database client",
             choices: Object.values(drivers),

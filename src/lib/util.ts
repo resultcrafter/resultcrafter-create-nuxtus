@@ -64,7 +64,7 @@ export enum ProjectType {
         },
       },
 			{
-				type: "list",
+				type: "select",
 				name: "dbType",
 				message: "Choose your database client",
 				choices: Object.values(drivers),
