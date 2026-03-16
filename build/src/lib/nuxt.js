@@ -27,6 +27,8 @@ export function installLocaltunnel() {
     const configFile = path.join(process.cwd(), 'client', "nuxt.config.ts");
     let configString = readFileSync(configFile, "utf8");
     configString = configString.replace('modules: [', `modules: ['@nuxtus/nuxt-localtunnel', `);
+    // Write the config back to a file
     writeFileSync(configFile, configString);
     return;
 }
+//# sourceMappingURL=nuxt.js.map
