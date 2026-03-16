@@ -1,5 +1,12 @@
 Changelog
 
+## [2.1.7](https://github.com/nuxtus/create-nuxtus/compare/v2.1.6...v2.1.7) (2026-03-16)
+
+
+### Bug Fixes
+
+* change inquirer prompt type from list to select for v13 compatibility ([d0d565c](https://github.com/nuxtus/create-nuxtus/commit/d0d565cc00bf3c98731e3e2f45e790d52b848588))
+
 ## [2.1.6](https://github.com/nuxtus/create-nuxtus/compare/v2.1.5...v2.1.6) (2026-03-16)
 
 
