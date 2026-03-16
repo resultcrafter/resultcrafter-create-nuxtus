@@ -1,5 +1,18 @@
 Changelog
 
+## [2.1.3](https://github.com/nuxtus/create-nuxtus/compare/v2.1.2...v2.1.3) (2026-03-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependency inquirer to v13 ([c2b9a5f](https://github.com/nuxtus/create-nuxtus/commit/c2b9a5fd280f425a1d85d92e39da4849c75a58da))
+* **deps:** update dependency joi to v18 ([dc22620](https://github.com/nuxtus/create-nuxtus/commit/dc22620a5beaff8cd91210627ef1ddc675b250c0))
+* **deps:** update dependency ora to v9 ([a5a4479](https://github.com/nuxtus/create-nuxtus/commit/a5a4479c720f02ef06b5512435881770a5ad23b8))
+* **deps:** update dependency rimraf to v6 ([e67f8fd](https://github.com/nuxtus/create-nuxtus/commit/e67f8fd8e510a6b32363b13e7d11d8765cb16723))
+* **deps:** update dependency tslib to ~2.8.0 ([98bebe0](https://github.com/nuxtus/create-nuxtus/commit/98bebe0c86532c2fe32b0b2e51cb2a4b60b5516c))
+* **deps:** update dependency uuid to v13 ([c3f26d3](https://github.com/nuxtus/create-nuxtus/commit/c3f26d35fc4525f29c79211411b01f740ff2d749))
+* update Node engine requirement to >=22 ([4f1b54d](https://github.com/nuxtus/create-nuxtus/commit/4f1b54d765f6ac7495197e813cf1c7ce98674b1e))
+
 ## [2.1.2](https://github.com/nuxtus/create-nuxtus/compare/v2.1.1...v2.1.2) (2024-07-01)
 
 
