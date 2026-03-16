@@ -1,5 +1,12 @@
 Changelog
 
+## [2.1.4](https://github.com/nuxtus/create-nuxtus/compare/v2.1.3...v2.1.4) (2026-03-16)
+
+
+### Bug Fixes
+
+* update semantic-release to v25 and fix glob security vulnerability ([767c98b](https://github.com/nuxtus/create-nuxtus/commit/767c98bcc53a71899a8c225739c3aa4f157e1134))
+
 ## [2.1.3](https://github.com/nuxtus/create-nuxtus/compare/v2.1.2...v2.1.3) (2026-03-16)
 
 
