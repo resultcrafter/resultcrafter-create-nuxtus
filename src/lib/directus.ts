@@ -12,8 +12,6 @@ export function startDirectus(): void {
 }
 
 export function installDirectusHook(): void {
-  const hookSpinner = ora('Installing Nuxtus hook...').start();
-
   try {
     execSync(
       `cd server && npm install @nuxtus/directus-extension-nuxtus-hook --save-dev`,
@@ -42,9 +40,7 @@ export function installDirectusHook(): void {
       path.join(source, 'package.json'),
       path.join(subDest, 'package.json'),
     );
-    hookSpinner.succeed('Nuxtus hook installed.');
   } catch (err) {
-    // console.error(chalk.red(`Failed installing Nuxtus hook: ${err}`))
     throw `Failed installing Nuxtus hook: ${err}`;
   }
 }

@@ -151,9 +151,15 @@ async function main(): Promise<void> {
     process.exit();
   }
 
-  const directusSpinner = ora('Installing Directus...').start();
-  const nuxtSpinner = ora('Installing Nuxt...').start();
-  const rmSpinner = ora('Optimising boilerplate...').start();
+  const pending = new Set(['Directus', 'Nuxt', 'boilerplate']);
+  const spinner = ora(`Setting up ${[...pending].join(', ')}...`).start();
+
+  function taskDone(name: string): void {
+    pending.delete(name);
+    if (pending.size > 0) {
+      spinner.text = `Setting up ${[...pending].join(', ')}...`;
+    }
+  }
 
   const directus = installDirectus()
     .then(async () => {
@@ -170,10 +176,10 @@ async function main(): Promise<void> {
         stdio: 'ignore',
       });
       await installDirectusHook();
-      directusSpinner.succeed('Directus installed.');
+      taskDone('Directus');
     })
     .catch((error) => {
-      directusSpinner.fail(`Failed installing Directus: ${error}`);
+      spinner.fail(`Failed installing Directus: ${error}`);
       process.exit(1);
     });
 
@@ -183,23 +189,24 @@ async function main(): Promise<void> {
       if (options.directusURL !== 'http://localhost:8055') {
         installLocaltunnel();
       }
-      nuxtSpinner.succeed('Nuxt installed.');
+      taskDone('Nuxt');
     })
     .catch((error) => {
-      nuxtSpinner.fail(chalk.red(`Failed installing Nuxt: ${error}`));
+      spinner.fail(chalk.red(`Failed installing Nuxt: ${error}`));
       process.exit(1);
     });
 
   const cleanup = cleanUp(projectName)
     .then(() => {
-      rmSpinner.succeed('Boilerplate customised.');
+      taskDone('boilerplate');
     })
     .catch((error) => {
-      rmSpinner.fail(chalk.red(`Failed removing unused files: ${error}`));
+      spinner.fail(chalk.red(`Failed removing unused files: ${error}`));
       process.exit(1);
     });
 
   Promise.all([directus, nuxt, cleanup]).then(() => {
+    spinner.succeed('Setup complete.');
     execSync(`npx rimraf ./templates`);
     console.log('\n');
     console.log(
