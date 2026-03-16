@@ -1,5 +1,12 @@
 Changelog
 
+## [2.1.6](https://github.com/nuxtus/create-nuxtus/compare/v2.1.5...v2.1.6) (2026-03-16)
+
+
+### Bug Fixes
+
+* pull latest main before semantic-release to prevent behind-remote error ([23e8223](https://github.com/nuxtus/create-nuxtus/commit/23e8223ee33fae65bcce55da1085040e4dc7f9d0))
+
 ## [2.1.5](https://github.com/nuxtus/create-nuxtus/compare/v2.1.4...v2.1.5) (2026-03-16)
 
 
