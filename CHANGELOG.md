@@ -1,5 +1,12 @@
 Changelog
 
+## [2.1.8](https://github.com/nuxtus/create-nuxtus/compare/v2.1.7...v2.1.8) (2026-03-16)
+
+
+### Bug Fixes
+
+* use single spinner for parallel setup tasks ([acfbb38](https://github.com/nuxtus/create-nuxtus/commit/acfbb3839b8b5572d279cd963565dc1fcf60022e))
+
 ## [2.1.7](https://github.com/nuxtus/create-nuxtus/compare/v2.1.6...v2.1.7) (2026-03-16)
 
 
