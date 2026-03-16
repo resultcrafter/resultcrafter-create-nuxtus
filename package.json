@@ -57,7 +57,7 @@
     "ora": "^8.0.0",
     "rimraf": "^5.0.0",
     "tslib": "~2.8.0",
-    "uuid": "^9.0.0"
+    "uuid": "^13.0.0"
   },
   "release": {
     "branches": "main",
