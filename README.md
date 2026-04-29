@@ -1,8 +1,8 @@
 # Create Nuxtus
 
-NPX package for creating a new [@nuxtus/nuxtus](https://github.com/nuxtus/nuxtus) site. A boilerplate based on [Directus](https://directus.io) and [Nuxt](https://nuxtjs.org) (with [Tailwind CSS](https://tailwindcss.nuxtjs.org/) included).
+NPX package for creating a new ResultCrafter Nuxtus site. A boilerplate based on [Directus](https://directus.io) and [Nuxt](https://nuxtjs.org) (with [Tailwind CSS](https://tailwindcss.nuxtjs.org/) included).
 
-Simply run:
+## Usage
 
 ```bash
 npx create-nuxtus@latest app-name
@@ -10,7 +10,17 @@ npx create-nuxtus@latest app-name
 
 > Replace `app-name` with the name of your project.
 
-For more details visit [nuxtus.com](https://nuxtus.com) or [read the documentation](https://docs.nuxtus.com)
+### Premium Template
+
+Use the `--template premium` flag to use the premium template with AI skills, layout system, and documentation:
+
+```bash
+npx create-nuxtus@latest app-name --template premium
+```
+
+Available templates:
+- `default` (default) — Free boilerplate with @resultcrafter packages
+- `premium` — Paid template with layout, AI skills (init-general-site, init-blog, add-collection), Directus MCP config, and docs
 
 ## Developing/Debugging
 

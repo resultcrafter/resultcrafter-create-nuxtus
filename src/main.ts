@@ -86,7 +86,24 @@ console.log(
 const projectName = process.argv[2];
 const currentPath = process.cwd();
 const projectPath = path.join(currentPath, projectName);
-const git_repo = 'https://github.com/nuxtus/nuxtus';
+
+// Parse --template/-t flag
+const templateIndex = process.argv.findIndex(arg => arg === '--template' || arg === '-t');
+const templateName = templateIndex !== -1 && process.argv[templateIndex + 1]
+  ? process.argv[templateIndex + 1].toLowerCase()
+  : 'default';
+
+const templateRepos: Record<string, string> = {
+  default: 'https://github.com/resultcrafter/resultcrafter-nuxtus.git',
+  premium: 'git@github.com:resultcrafter/resultcrafter-nuxtus-premium.git',
+};
+
+if (!(templateName in templateRepos)) {
+  console.log(chalk.red(`Unknown template "${templateName}". Available templates: ${Object.keys(templateRepos).join(', ')}`));
+  process.exit(1);
+}
+
+const git_repo = templateRepos[templateName];
 const branch = process.env.NUXTUS_BRANCH || 'main';
 
 try {
@@ -198,6 +215,14 @@ async function main(): Promise<void> {
 
   const cleanup = cleanUp(projectName)
     .then(() => {
+      if (templateName === 'premium') {
+        // Preserve .opencode directory for premium template
+        const opencodeDir = path.join(projectPath, '.opencode');
+        if (fs.existsSync(opencodeDir)) {
+          // .opencode is inside projectPath, cleanUp runs inside projectPath, so it still exists
+          console.log(chalk.green('  Premium template: .opencode/ skills directory preserved.'));
+        }
+      }
       taskDone('boilerplate');
     })
     .catch((error) => {
@@ -209,18 +234,33 @@ async function main(): Promise<void> {
     spinner.succeed('Setup complete.');
     execSync(`npx rimraf ./templates`);
     console.log('\n');
-    console.log(
-      chalk.green('🚀 Nuxtus site is ready for use!\n\n') +
-        chalk.white.bold('Directus\n') +
-        chalk.magenta.underline(`${options.directusURL}\n\n`) +
-        chalk.white.bold('Nuxtus\n') +
-        chalk.green.underline('http://localhost:3000\n\n') +
-        chalk.white(`cd ${projectName}` + '\nnpm start\n\n') +
-        chalk.green(
-          'For documentation see: ',
-          chalk.underline('https://docs.nuxtus.com\n'),
-        ),
-    );
+    if (templateName === 'premium') {
+      console.log(
+        chalk.green('🚀 ResultCrafter Premium site is ready!\n\n') +
+          chalk.white.bold('Directus\n') +
+          chalk.magenta.underline(`${options.directusURL}\n\n`) +
+          chalk.white.bold('Nuxt\n') +
+          chalk.green.underline('http://localhost:3000\n\n') +
+          chalk.white(`cd ${projectName}` + '\nnpm start\n\n') +
+          chalk.yellow('Next steps:\n') +
+          chalk.white('1. Copy .opencode/opencode.json.example to .opencode/opencode.json\n') +
+          chalk.white('2. Configure your Directus URL and admin token\n') +
+          chalk.white('3. Run AI skills: init-general-site → init-blog → add-collection\n')
+      );
+    } else {
+      console.log(
+        chalk.green('🚀 Nuxtus site is ready for use!\n\n') +
+          chalk.white.bold('Directus\n') +
+          chalk.magenta.underline(`${options.directusURL}\n\n`) +
+          chalk.white.bold('Nuxtus\n') +
+          chalk.green.underline('http://localhost:3000\n\n') +
+          chalk.white(`cd ${projectName}` + '\nnpm start\n\n') +
+          chalk.green(
+            'For documentation see: ',
+            chalk.underline('https://docs.nuxtus.com\n'),
+          ),
+      );
+    }
   });
 }
 
