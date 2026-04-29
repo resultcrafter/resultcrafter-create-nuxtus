@@ -75,11 +75,18 @@ const ssl = (): Record<string, string | boolean> => ({
   default: false,
 });
 
+const sslRejectUnauthorized = (): Record<string, string | boolean> => ({
+  type: 'confirm',
+  name: 'sslRejectUnauthorized',
+  message: 'Reject unauthorized SSL certificates:',
+  default: true,
+});
+
 export const databaseQuestions = {
   sqlite3: [filename],
   mysql: [host, port, database, user, password],
-  pg: [host, port, database, user, password, ssl],
-  cockroachdb: [host, port, database, user, password, ssl],
+  pg: [host, port, database, user, password, ssl, sslRejectUnauthorized],
+  cockroachdb: [host, port, database, user, password, ssl, sslRejectUnauthorized],
   oracledb: [host, port, database, user, password],
   mssql: [host, port, database, user, password, encrypt],
 };
