@@ -19,7 +19,7 @@ npx create-nuxtus@latest app-name --template premium
 ```
 
 Available templates:
-- `default` (default) — Free boilerplate with @resultcrafter packages
+- `default` (default) — Free boilerplate with @nuxtus packages
 - `premium` — Paid template with layout, AI skills (init-general-site, init-blog, add-collection), Directus MCP config, and docs
 
 ## Developing/Debugging

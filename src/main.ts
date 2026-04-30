@@ -94,7 +94,7 @@ const templateName = templateIndex !== -1 && process.argv[templateIndex + 1]
   : 'default';
 
 const templateRepos: Record<string, string> = {
-  default: 'https://github.com/resultcrafter/resultcrafter-nuxtus.git',
+  default: 'https://github.com/nuxtus/nuxtus.git',
   premium: 'git@github.com:resultcrafter/resultcrafter-nuxtus-premium.git',
 };
 
