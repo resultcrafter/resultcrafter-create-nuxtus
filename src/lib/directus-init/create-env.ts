@@ -40,11 +40,10 @@ export default async function createEnv(
   };
 
   for (const [key, value] of Object.entries(credentials)) {
-    if (key === 'sslRejectUnauthorized') continue;
     config.database[`DB_${key.toUpperCase()}`] = value;
   }
 
-  if (credentials.ssl === true && credentials.sslRejectUnauthorized === false) {
+  if (credentials.ssl === true) {
     config.database['DB_SSL__REJECT_UNAUTHORIZED'] = 'false';
   }
 

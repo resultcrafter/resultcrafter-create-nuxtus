@@ -8,6 +8,5 @@ export declare type Credentials = {
   user?: string;
   password?: string;
   ssl?: boolean;
-  sslRejectUnauthorized?: boolean;
   options__encrypt?: boolean;
 };
