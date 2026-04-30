@@ -53,14 +53,14 @@ const templateName = templateIndex !== -1 && process.argv[templateIndex + 1]
     ? process.argv[templateIndex + 1].toLowerCase()
     : 'default';
 const templateRepos = {
-    default: 'https://github.com/resultcrafter/resultcrafter-nuxtus.git',
+    default: 'https://github.com/nuxtus/nuxtus.git',
     premium: 'git@github.com:resultcrafter/resultcrafter-nuxtus-premium.git',
 };
 if (!(templateName in templateRepos)) {
     console.log(chalk.red(`Unknown template "${templateName}". Available templates: ${Object.keys(templateRepos).join(', ')}`));
     process.exit(1);
 }
-const git_repo = templateRepos[templateName];
+const git_repo = process.env.NUXTUS_TEMPLATE || templateRepos[templateName];
 const branch = process.env.NUXTUS_BRANCH || 'main';
 try {
     fs.mkdirSync(projectPath);
@@ -97,14 +97,20 @@ async function main() {
     console.log(''); // empty line between Directus questions and status messages
     const nuxtusSpinner = ora('Downloading Nuxtus boilerplate...').start();
     try {
-        execSync(`git clone --depth 1 -b ${branch} ${git_repo} ${projectPath}`, {
-            stdio: 'ignore',
-        });
+        if (git_repo.startsWith('file://')) {
+            const localPath = git_repo.replace('file://', '');
+            execSync(`cp -r ${localPath}/. ${projectPath}`);
+        }
+        else {
+            execSync(`git clone --depth 1 -b ${branch} ${git_repo} ${projectPath}`, {
+                stdio: 'ignore',
+            });
+        }
         nuxtusSpinner.succeed('Nuxtus boilerplate downloaded.');
         process.chdir(projectPath);
     }
     catch (error) {
-        nuxtusSpinner.fail(chalk.red(`Failed cloning Nuxtus repo: ${error}`));
+        nuxtusSpinner.fail(chalk.red(`Failed downloading Nuxtus boilerplate: ${error}`));
         process.exit();
     }
     const pending = new Set(['Directus', 'Nuxt', 'boilerplate']);
